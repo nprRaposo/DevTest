@@ -4,7 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -15,7 +14,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.CampaignName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CampaignName, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CampaignName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CampaignName, "", new { @class = "text-danger" })
@@ -25,7 +24,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })*@
+				@Html.TextBoxFor(m => m.Date, new {  @class = "form-control datepicker" })
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AffiliateName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AffiliateName, "Affiliate Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AffiliateName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AffiliateName, "", new { @class = "text-danger" })
@@ -69,6 +69,8 @@
         </div>
     </div>
 }
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

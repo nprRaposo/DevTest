@@ -9,6 +9,12 @@
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/libs")
+
+	<script type="text/javascript">
+    $(function () { //
+    	$('.datepicker').datepicker({ dateFormat: "dd/mm/yy" });
+    });
+	</script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -35,6 +41,8 @@
 			</div>
 		</div>
     </div>
+
+	
 	
     @RenderSection("scripts", required: false)
 </body>

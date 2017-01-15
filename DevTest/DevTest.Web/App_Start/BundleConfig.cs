@@ -15,6 +15,9 @@ namespace DevTest.Web
 						"~/Content/libs/select2/js/select2.js",
 						"~/Content/libs/spin/spin.js",
 						"~/Scripts/toastr.js",
+						"~/Scripts/moment.js",
+						"~/Scripts/jquery-ui.js",
+						"~/Scripts/bootstrap-datetimepicker.js",
 						"~/Scripts/angular.js",
 						"~/Scripts/ui-bootstrap.js",
 						"~/Content/libs/bootbox/bootbox.min.js",
@@ -35,7 +38,8 @@ namespace DevTest.Web
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
 					  "~/Content/site.css",
-					  "~/Content/toastr.css",
+					  "~/Content/jquery-ui.css",
+					  "~/Content/_bootstrap-datetimepicker.less",
 					  "~/Content/libs/select2/css/select2.css"));
 		}
 	}
