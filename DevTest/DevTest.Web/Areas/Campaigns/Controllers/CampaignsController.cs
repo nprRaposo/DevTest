@@ -16,7 +16,6 @@ namespace DevTest.Web.Areas.Campaigns.Controllers
     public class CampaignsController : Controller
     {
 		#region Properties
-		//private readonly IService<Campaign> _campaignsService;
 		private readonly UnitOfWork _unitOfWork;
 		#endregion
 
