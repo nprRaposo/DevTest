@@ -9,24 +9,26 @@ using System.Web.Mvc;
 using DevTest.Data.DAL;
 using DevTest.Data.Entities;
 using DevTest.Services.Generic;
+using Splats.Services;
 
 namespace DevTest.Web.Areas.Campaigns.Controllers
 {
     public class CampaignsController : Controller
     {
 		#region Properties
-		private readonly IService<Campaign> _campaignsService;
+		//private readonly IService<Campaign> _campaignsService;
+		private readonly UnitOfWork _unitOfWork;
 		#endregion
 
-		public CampaignsController(IService<Campaign> campaignsService)
+		public CampaignsController(UnitOfWork unitOfWork)
 		{
-			this._campaignsService = campaignsService;
+			this._unitOfWork = unitOfWork;
 		}
 
 		// GET: Campaigns/Campaigns
 		public ActionResult Index()
         {
-            return View(this._campaignsService.Get());
+            return View(this._unitOfWork.CampaignService.Get());
         }
 
         // GET: Campaigns/Campaigns/Details/5
@@ -36,7 +38,7 @@ namespace DevTest.Web.Areas.Campaigns.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Campaign campaign = this._campaignsService.GetBy(id.Value);
+            Campaign campaign = this._unitOfWork.CampaignService.GetBy(id.Value);
             if (campaign == null)
             {
                 return HttpNotFound();
@@ -59,7 +61,7 @@ namespace DevTest.Web.Areas.Campaigns.Controllers
         {
             if (ModelState.IsValid)
             {
-				this._campaignsService.Insert(campaign);
+				this._unitOfWork.CampaignService.Insert(campaign);
 				return RedirectToAction("Index");
             }
 
@@ -73,7 +75,7 @@ namespace DevTest.Web.Areas.Campaigns.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			var serie = this._campaignsService.GetBy(id.Value);
+			var serie = this._unitOfWork.CampaignService.GetBy(id.Value);
 
 			if (serie == null)
 			{
@@ -92,7 +94,7 @@ namespace DevTest.Web.Areas.Campaigns.Controllers
         {
             if (ModelState.IsValid)
             {
-				this._campaignsService.Update(campaign);
+				this._unitOfWork.CampaignService.Update(campaign);
 				return RedirectToAction("Index");
             }
             return View(campaign);
@@ -105,7 +107,7 @@ namespace DevTest.Web.Areas.Campaigns.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-			Campaign campaign = this._campaignsService.GetBy(id.Value);
+			Campaign campaign = this._unitOfWork.CampaignService.GetBy(id.Value);
 			if (campaign == null)
             {
                 return HttpNotFound();
@@ -118,7 +120,7 @@ namespace DevTest.Web.Areas.Campaigns.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-			this._campaignsService.Delete(id);
+			this._unitOfWork.CampaignService.Delete(id);
 			return RedirectToAction("Index");
         }
     }
